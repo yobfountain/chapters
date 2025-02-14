@@ -7,7 +7,7 @@ image: bfountain/chapters
 # Deploy to these servers.
 servers:
   web:
-    - 2a01:4ff:f0:3bed::
+    - 5.161.229.47
   # job:
   #   hosts:
   #     - 192.168.0.1
