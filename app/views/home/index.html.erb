@@ -1,0 +1,9 @@
+<h1>27 Chapters Generator</h1>
+<div data-controller="chat">
+  <div data-chat-target="status"></div>
+  <form data-action="submit->chat#submit">
+    <textarea data-chat-target="prompt" placeholder="Enter your prompt here..." class="form-control"></textarea>
+    <button type="submit" class="btn btn-primary mt-3">Generate Response</button>
+  </form>
+  <div class="mt-3" data-chat-target="response"></div>
+</div>
