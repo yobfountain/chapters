@@ -1,9 +1,38 @@
-<h1>27 Chapters Generator!</h1>
-<div data-controller="chat">
-  <div data-chat-target="status"></div>
-  <form data-action="submit->chat#submit">
-    <textarea data-chat-target="prompt" placeholder="Enter your prompt here..." class="form-control"></textarea>
-    <button type="submit" class="btn btn-primary mt-3">Generate Response</button>
-  </form>
-  <div class="mt-3" data-chat-target="response"></div>
+
+<div id="novel-generator" data-controller="chat storage" class="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 p-8">
+  <div id="header" class="max-w-7xl mx-auto relative">
+      <div data-chat-target="status" class="absolute right-0 top-0 flex items-center gap-2">
+          <span class="text-sm text-gray-600">Loading the LLM</span>
+          <div class="w-32 h-2 bg-gray-200 rounded-full">
+              <div data-chat-target="progress" style="width: 50%" class="h-full bg-gradient-to-r from-purple-600 to-blue-600 rounded-full animate-pulse"></div>
+          </div>
+      </div>
+      <h1 class="text-5xl font-bold text-center bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-12">Novel Outline Generator</h1>
+      <div id="prompt-section" class="mb-16 space-y-6">
+        <form data-action="submit->chat#submit">
+          <div class="flex gap-4">
+              <textarea id="story_prompt" data-action="selectionchange->storage#storeInput" data-storage-target="input" data-chat-target="prompt" placeholder="Enter your novel's premise..." class="flex-1 p-4 rounded-xl border-2 border-purple-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 text-sm outline-none shadow-sm"></textarea>
+              <button class="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-semibold hover:opacity-90 transition shadow-lg flex items-center gap-2">
+                  <i class="fa-solid fa-lock text-xl"></i>
+                  Lock Prompt
+              </button>
+              <div data-action="click->chat#generatePrompt" class="px-8 py-6 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-semibold hover:opacity-90 transition shadow-lg cursor-pointer gap-2">
+                  <i class="fa-solid fa-rotate text-2xl"></i>
+                  Generate Prompt
+              </div>
+          </div>
+        </form>
+      </div>
+      <div id="chapters-grid" class="grid grid-cols-3 gap-8">
+          <% @outline[:acts].each_with_index do |act, idx| %>
+            <div id="column_<%= idx + 1%>%" class="space-y-6">
+              <h2 class="text-2xl text-center font-bold text-purple-800"><%= act[:title] %></h2>
+              <p class="text-xs text-gray-400 px-3"><%= act[:description] %></p>
+              <% act[:blocks].each_with_index do |block, idx |%>
+                <%= render partial: "block", locals: {block: block, index: idx } %>
+              <% end %>
+            </div>
+          <% end %>
+      </div>
+  </div>
 </div>
