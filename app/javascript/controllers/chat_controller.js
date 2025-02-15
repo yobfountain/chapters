@@ -82,6 +82,8 @@ export default class extends Controller {
         reply += chunk.choices[0]?.delta.content || ""
         localStorage.setItem(elementId, reply);
         chapterElement.value = reply
+        const trigger = new CustomEvent("input");
+        chapterElement.dispatchEvent(trigger);
         if (chunk.usage) {
           // console.log(chunk.usage)
         }

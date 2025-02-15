@@ -9,7 +9,10 @@ export default class extends Controller {
   connect() {
     let keys = this.returnKeys();
     keys.forEach(key => {
-      document.getElementById(key).value = localStorage.getItem(key);
+      let el = document.getElementById(key)
+      el.value = localStorage.getItem(key);
+      const trigger = new CustomEvent("input");
+      el.dispatchEvent(trigger);
     })
   }
 
