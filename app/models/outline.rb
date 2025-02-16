@@ -125,4 +125,16 @@ class Outline
       ]
     }
   end
+
+  def self.placeholders
+    placeholders = {}
+    self.data[:acts].each do |act|
+      act[:blocks].each do |block|
+        block[:chapters].each do |chapter|
+          placeholders[chapter[:id]] = chapter[:description]
+        end
+      end
+    end
+    placeholders
+  end
 end

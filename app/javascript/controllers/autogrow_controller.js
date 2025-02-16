@@ -11,7 +11,6 @@ export default class extends Controller {
   }
 
   resize() {
-    console.log(this.element.id)
     const textarea = this.element;
     textarea.style.height = 'auto';
     textarea.style.overflowY = 'hidden';

@@ -115,7 +115,6 @@ export default class extends Controller {
         reply += chunk.choices[0]?.delta.content || ""
         localStorage.setItem("story_prompt", reply);
         this.promptTarget.value = reply
-        console.log(this.promptTarget.textContent)
         if (chunk.usage) {
           // console.log(chunk.usage)
         }

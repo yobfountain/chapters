@@ -1,28 +1,49 @@
 
 <%= tag.div id: block[:id], class: "relative bg-white p-6 rounded-xl shadow-md border-2 border-purple-100" do %>
-    <%# tag.h3 block[:title], class: "font-semibold mb-2 text-purple-800" %></h3>
-    <div class="relative">
-      <% block[:chapters].each do |chapter| %>
-        <div class="flex justify-between items-center text-sm">
-            <h3 class="font-semibold text-gray-500"><%= chapter[:title] %></h3>
-            <div class="flex gap-2">
-                <button data-tooltip-target="tooltip-lock" data-action="click->chat#lockChapter" class="p-2 text-gray-400 hover:text-purple-600 text-xs">
-                    <i class="fa-solid fa-lock-open"></i>
-                </button>
-                <button data-tooltip-target="tooltip-rotate" data-chapter-target="<%= chapter[:id] %>" data-action="click->chat#generateChapter" class="p-2 text-gray-400 hover:text-blue-600 text-xs">
-                    <i class="fa-solid fa-rotate"></i>
-                </button>
-            </div>
-        </div>
-          <%= tag.textarea "",
-            id: chapter[:id],
-            class: "w-full p-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-200 outline-none text-sm font-light", 
-            placeholder: chapter[:description],
-            data: {
-              controller: "autogrow",
-              action: "input->storage#storeInput input->autogrow#resize", 
-              storage_key_value: chapter[:id],
-              } %>
-        <% end %>
-    </div>
+  <div class="relative">
+    <% block[:chapters].each do |chapter| %>
+      <div class="flex justify-between items-center text-sm">
+          <h3 class="font-semibold text-gray-500"><%= chapter[:title] %></h3>
+          <div class="flex gap-2">
+              <%= button_tag(tag.i("", class:"fa-solid fa-rotate"), 
+                id: "generate_#{chapter[:id]}",
+                data: {
+                  chapter_target: chapter[:id], 
+                  action: "click->chat#generateChapter", 
+                  tooltip_target: "tooltip-rotate", 
+                  controller: "lock"
+                },
+                class: "p-2 text-gray-400 hover:text-blue-600 text-xs" ) %>
+              <%= button_tag(tag.i("", class:"fa-solid fa-lock-open"), 
+                id: "unlock_#{chapter[:id]}",
+                data: {
+                  chapter_target: chapter[:id], 
+                  action: "click->lock#lockChapter", 
+                  tooltip_target: "tooltip-lock", 
+                  controller: "lock"
+                },
+                class: "p-2 text-gray-400 hover:text-purple-600 text-xs" ) %>
+              <%= button_tag(tag.i("", class:"fa-solid fa-lock"), 
+                id: "lock_#{chapter[:id]}",
+                data: {
+                  chapter_target: chapter[:id], 
+                  action: "click->lock#unlockChapter", 
+                  tooltip_target: "tooltip-lock", 
+                  controller: "lock"
+                  },
+                style: "display: none",
+                class: "p-2 text-gray-400 hover:text-purple-600 text-xs" ) %>
+          </div>
+      </div>
+        <%= tag.textarea "",
+          id: chapter[:id],
+          class: "w-full p-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-200 outline-none text-sm font-light", 
+          placeholder: chapter[:description],
+          data: {
+            controller: "autogrow",
+            action: "input->storage#storeInput input->autogrow#resize", 
+            storage_key_value: chapter[:id],
+            } %>
+      <% end %>
+  </div>
 <% end %>
