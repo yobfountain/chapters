@@ -48,12 +48,14 @@ export default class extends Controller {
     return keys
   }
 
-  async generateChapter(event) {
+  generateChapter(event) {
     let elementId = event.currentTarget.dataset.chapterTarget;
+    let generateButtonIcon = document.getElementById(`generate_${elementId}`).firstChild;
+    generateButtonIcon.classList.add("loading");
     let chapterElement = document.getElementById(elementId);
     let placeholder = chapterElement.placeholder
     let outline = ["I need help writing an outline for a novel. Here's what I have so far:"];
-    let coda = `Please write a couple sentences for the next part of the outline. Here's what should happen next: ${placeholder}. Only respond with the two next sentences.`
+    let coda = `Please write a couple sentences for the next part of the outline. Here's what should happen next: ${placeholder}. Only respond with the two next sentences. Don't include an intro portion in your response.`
     let elements = document.getElementsByTagName("textarea");
     for (let item of elements) {
       if (item && item.value.length > 0) {
@@ -62,13 +64,18 @@ export default class extends Controller {
     }
     outline.push(coda);
     outline = outline.join("\n");
-    console.log(outline)
+    // console.log(outline)
     const messages = [
       { role: "system", content: "You are a helpful writing assistant." },
       { role: "user", content: outline }
     ]
-    if (!this.llmEngine) { alert("LLM Engine is not initialized yet."); return }
+    setTimeout(this.streamResponse(elementId, messages), 100);
+  }
 
+  async streamResponse(elementId, messages) {
+    if (!this.llmEngine) { alert("LLM Engine is not initialized yet."); return }
+    let chapterElement = document.getElementById(elementId);
+    let generateButtonIcon = document.getElementById(`generate_${elementId}`).firstChild;
     try {
       const chunks = await this.llmEngine.chat.completions.create({
         messages,
@@ -76,11 +83,15 @@ export default class extends Controller {
         stream: true,
         stream_options: { include_usage: true }
       })
-
       let reply = ""
       for await (const chunk of chunks) {
+        if (chunk.choices[0]?.finish_reason == "stop") {
+          generateButtonIcon = document.getElementById(`generate_${elementId}`).firstChild;
+          generateButtonIcon.classList.remove("loading");
+        }
         reply += chunk.choices[0]?.delta.content || ""
         localStorage.setItem(elementId, reply);
+        // console.log(chunk);
         chapterElement.value = reply
         const trigger = new CustomEvent("input");
         chapterElement.dispatchEvent(trigger);

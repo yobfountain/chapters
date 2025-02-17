@@ -24,7 +24,7 @@ class Outline
               category: "conflict",
               description: "The scenes in this block show a snapshot of the protagonist before their life changes.",
               chapters: [
-                { title: "Reaction/rebellion", id: "chapter_04", category: "setup", description: "The main character pushes back against what happened or was revealed in the inciting incident." },
+                { title: "Choice", id: "chapter_04", category: "setup", description: "The main character pushes back against what happened or was revealed in the inciting incident." },
                 { title: "Action", id: "chapter_05", category: "conflict", description: "The hero takes action to fix what happened in the inciting incident." },
                 { title: "Consequence", id: "chapter_06", category: "resolution", description: "The main character must face the consequences of the action they took(or tried to take)." },
               ]
@@ -36,7 +36,7 @@ class Outline
               description: "The scenes in this block show a snapshot of the protagonist before their life changes.",
               chapters: [
                 { title: "Pressure", id: "chapter_07", category: "setup", description: "The main character starts to feel the weight of what's happening to them." },
-                { title: "Pinch", id: "chapter_08", category: "conflict", description: "A plot twist happens, making the main character wonder if they made the right decision when they decided to take action." },
+                { title: "Plot twist", id: "chapter_08", category: "conflict", description: "A plot twist happens, making the main character wonder if they made the right decision when they decided to take action." },
                 { title: "Push", id: "chapter_09", category: "resolution", description: "The main character is forced once and for all out of their ordinary world." },
               ]
             },
@@ -55,7 +55,7 @@ class Outline
               chapters: [
                 { title: "New world", id: "chapter_10", category: "setup", description: "The main character explores the shiny new world (or state of mind) they're now living in." },
                 { title: "Fun and games", id: "chapter_11", category: "conflict", description: "The protagonist plays around in the new world, potentially meeting new characters." },
-                { title: "Juxtaposition", id: "chapter_12", category: "resolution", description: "We see a contrast between the main character's new world to the ordinary world they left behind." }
+                { title: "Old world", id: "chapter_12", category: "resolution", description: "We see a contrast between the main character's new world to the ordinary world they left behind." }
               ]
             },
             {
@@ -75,7 +75,7 @@ class Outline
               category: "resolution",
               description: "The final block of Act II sees the protagonist dedicated to finding a solution to the challenges they're dealing with. ",
               chapters: [
-                { title: "Consequence", id: "chapter_16", category: "setup", description: "The hero reflects on all that's happened to them on their journey so far." },
+                { title: "Action", id: "chapter_16", category: "setup", description: "The hero reflects on all that's happened to them on their journey so far." },
                 { title: "Trials", id: "chapter_17", category: "conflict", description: "The protagonist takes action to solve their problems and makes progress based on the lessons they’ve learned in previous conflicts." },
                 { title: "Dedication", id: "chapter_18", category: "resolution", description: "Despite the challenges they're facing, the main character resolves to solve their issues." }
               ]
@@ -95,7 +95,7 @@ class Outline
               chapters: [
                 { title: "Calm before the storm", id: "chapter_19", category: "setup", description: "The hero feels the pressure as they decide to put their plan into action." },
                 { title: "Plot twist ", id: "chapter_20", category: "conflict", description: "Something terrible occurs, the worst complication in the story to this point." },
-                { title: "Darkest point", id: "chapter_21", category: "resolution", description: "The main character is at their lowest. Is all lost?" }
+                { title: "Darkest moment", id: "chapter_21", category: "resolution", description: "The main character is at their lowest. Is all lost?" }
               ]
             },
             {
@@ -106,7 +106,7 @@ class Outline
               chapters: [
                 { title: "Power within", id: "chapter_22", category: "setup", description: "The hero reaches deep inside to bring themselves back from the brink of destruction." },
                 { title: "Action", id: "chapter_23", category: "conflict", description: "With renewed resolve, the protagonist formulates a plan to take action." },
-                { title: "Convergence", id: "chapter_24", category: "resolution", description: "All of the characters and main plot points gather for the big finale." }
+                { title: "Converge", id: "chapter_24", category: "resolution", description: "All of the characters and main plot points gather for the big finale." }
               ]
             },
             {
@@ -115,7 +115,7 @@ class Outline
               category: "resolution",
               description: "We've reached the end of the story. In the final block, the hero must face their trials and emerge victorious.",
               chapters: [
-                { title: "The final battle ", id: "chapter_25", category: "setup", description: "The hero faces down their nemesis. This scene is not always a literal battle: sometimes, the hero is tackling an internal demon in a high-pressure situation (like declaring their eternal love before a big group of people)." },
+                { title: "Battle ", id: "chapter_25", category: "setup", description: "The hero faces down their nemesis. This scene is not always a literal battle: sometimes, the hero is tackling an internal demon in a high-pressure situation (like declaring their eternal love before a big group of people)." },
                 { title: "Climax", id: "chapter_26", category: "conflict", description: "Everything has led to this moment. The hero succeeds or fails, depending on your story." },
                 { title: "Resolution", id: "chapter_27", category: "resolution", description: "We see the hero in the aftermath of the climax. Are they celebrating their victory or licking their wounds?" }
               ]

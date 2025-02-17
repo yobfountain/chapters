@@ -36,11 +36,8 @@ export default class extends Controller {
     this.element.style.display = "none";
     document.getElementById(`generate_${chapter_id}`).style.display = "none";
     document.getElementById(`lock_${chapter_id}`).style.display = "initial";
-    let div = document.createElement("div");
-    div.id = chapter_id;
-    div.innerText = chapterEl.value;
-    div.className = "text-sm font-light";
-    chapterEl.replaceWith(div);
+    chapterEl.classList = "w-full outline-none text-sm font-light resize-none";
+    chapterEl.disabled = true;
   }
 
   unlockChapter() {
@@ -49,14 +46,7 @@ export default class extends Controller {
     this.element.style.display = "none";
     document.getElementById(`generate_${chapter_id}`).style.display = "initial"
     document.getElementById(`unlock_${chapter_id}`).style.display = "initial"
-    let textarea = document.createElement("textarea");
-    let placeholders = JSON.parse(localStorage.getItem("placeholders"))
-    textarea.id = chapter_id;
-    textarea.placeholder = placeholders[chapter_id];
-    textarea.value = chapterEl.innerText;
-    textarea.className = "w-full p-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-200 outline-none text-sm font-light";
-    textarea.setAttribute("data-controller", "autogrow");
-    textarea.setAttribute("data-action", "input->storage#storeInput input->autogrow#resize");
-    chapterEl.replaceWith(textarea);
+    chapterEl.className = "w-full p-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-200 outline-none text-sm font-light";
+    chapterEl.disabled = false;
   }
 }
