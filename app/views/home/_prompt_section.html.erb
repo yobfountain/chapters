@@ -1,0 +1,46 @@
+<div id="prompt-section" class="mb-16 space-y-6">
+  <form data-action="submit->chat#submit">
+    <div class="flex flex-container gap-4" style="align-items: center">
+      <textarea id="story_prompt" 
+        data-controller="autogrow" 
+        data-action="selectionchange->storage#storeInput input->autogrow#resize" 
+        data-storage-target="input" 
+        data-chat-target="prompt" 
+        placeholder="Enter your novel's premise..." 
+        class="flex-1 p-4 rounded-xl border-2 border-purple-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 text-sm outline-none shadow-sm bg-white">
+      </textarea>
+      <%= button_tag "", id: "generate_story_prompt",
+        data: { chapter_target: "story_prompt", 
+          action: "click->chat#generatePrompt", 
+          tooltip_target: "tooltip-rotate", 
+          controller: "lock"
+        },
+        class: "px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-semibold hover:opacity-90 transition shadow-lg cursor-pointer gap-2" do %>
+        <%= tag.i("", class:"fa-solid fa-rotate") %> <%= tag.span "Generate Prompt", style: "padding-left: 3px" %>
+      <% end %>
+      <%= button_tag "", 
+        id: "unlock_story_prompt",
+        data: {
+          chapter_target: "story_prompt", 
+          action: "click->lock#lockChapter", 
+          tooltip_target: "tooltip-lock", 
+          controller: "lock"
+        },
+        class: "px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-semibold hover:opacity-90 transition shadow-lg gap-2" do %>
+          <%= tag.i("", class:"fa-solid fa-lock-open") %> <%= tag.span "Lock Prompt", style: "padding-left: 3px" %>
+      <% end %>
+      <%= button_tag "",
+        id: "lock_story_prompt",
+        data: {
+          chapter_target: "story_prompt", 
+          action: "click->lock#unlockChapter", 
+          tooltip_target: "tooltip-lock", 
+          controller: "lock"
+          },
+        style: "display: none",
+        class: "px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-semibold hover:opacity-90 transition shadow-lg gap-2" do %>
+        <%= tag.i("", class:"fa-solid fa-lock") %> <%= tag.span "Unlock Prompt", style: "padding-left: 3px" %>
+      <% end %>
+    </div>
+  </form>
+</div>
