@@ -15,4 +15,9 @@
         class: "p-2 px-3 text-white rounded-lg text-sm hover:opacity-90 transition flex items-center gap-2" do %>
         <%= tag.i("", class:"fa-solid fa-circle-info") %> <%= tag.span "About" %>
     <% end %>
+    <%= button_tag  id: "reset", style: "background-color: #BBB",
+        data: {controller: "storage", action: "click->storage#reset"},
+        class: "p-2 px-3 text-white rounded-lg text-sm hover:opacity-90 transition flex items-center gap-2" do %>
+        <%= tag.i("", class:"fa-solid fa-triangle-exclamation") %> <%= tag.span "Reset" %>
+    <% end %>
 </div>

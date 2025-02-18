@@ -20,6 +20,19 @@ export default class extends Controller {
     localStorage.setItem(e.target.id, e.target.value);
   }
 
+  reset() {
+    if (confirm('Are you sure you want to reset? You will lose all work.')) {
+      let keys = this.returnKeys();
+      keys.forEach(key => {
+        let el = document.getElementById(key)
+        el.value = "";
+        localStorage.removeItem(key);
+        const trigger = new CustomEvent("input");
+        el.dispatchEvent(trigger);
+      })
+    }
+  }
+
   returnKeys() {
     let keys = [];
     let elements = document.getElementsByTagName("textarea");
