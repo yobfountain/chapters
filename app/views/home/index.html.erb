@@ -2,9 +2,9 @@
   <div class="modal-content rounded-xl shadow-lg">
     <div>
       <h3 class="font-bold text-2xl mb-2">Welcome!</h3>
-      <p class="mb-2">This outline creator is modeled after the "27 chapters" approach first introduced by writer Kat O’Keefe on her <a class="text-purple-800" href="https://youtu.be/ZcPSYwGQ14w?si=vL1WD0ZsUyYmwHF6&t=348" target="_blank">YouTube channel @katytastic</a>.</p>
-      <p class="mb-2">You can write down your thoughts here and if you get stuck use the generate button to get a little help from a robot. When you are done, click the dowloand button to save your outline.</p>
-      <p class="mb-2">This tool downloads an LLM to your browser. There may be slight pauses when generating. None of your info leaves your computer.</p>
+      <p class="mb-2">Do you want to write a novel? You came to the right place. If it's your first time writing a book, you may want to create an outline. This outline creator is modeled after the "27 chapters" approach first introduced by writer Kat O’Keefe on her <a class="text-purple-800" href="https://youtu.be/ZcPSYwGQ14w?si=vL1WD0ZsUyYmwHF6&t=348" target="_blank">YouTube channel @katytastic</a>.</p>
+      <p class="mb-2">You can write down your thoughts here and if you get stuck use the generate button to get a little help from a robot. When you are done, click the download button to save your outline. If you want to start over, hit the reset button.</p>
+      <p class="mb-2">This tool downloads an LLM locally to your browser. There may be slight pauses when generating. None of your info leaves your computer.</p>
       <p class="mb-2">Created by Brian Fountain</p>
      </div><br/>
     <button class="close mt-8 px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-semibold hover:opacity-90 transition shadow-lg cursor-pointer">close</button>
@@ -14,7 +14,8 @@
   <%= render 'nav' %>
   <br />
   <div id="header" class="max-w-7xl mx-auto">
-      <h1 class="text-5xl font-bold text-center bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-12">Novel Outline Generator</h1>
+      <h1 class="text-5xl font-bold text-center bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">Novel Outline Generator</h1>
+      <h1 class="text-center italic text-gray-400 mb-12">Based on Kat O’Keefe’s 27 Chapters template</h1>
       <%= render "prompt_section" %>
       <div id="chapters-grid" class="grid gap-8 flex-container">
           <% @outline[:acts].each_with_index do |act, idx| %>
