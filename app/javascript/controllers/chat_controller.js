@@ -17,7 +17,7 @@ export default class extends Controller {
         initProgressCallback: this.initProgressCallback.bind(this)
       })
     } catch (error) {
-      this.statusTarget.textContent = error
+      this.statusTarget.textContent = "This browser is not supported. Consider using Chrome for LLM features."
     }
   }
 
